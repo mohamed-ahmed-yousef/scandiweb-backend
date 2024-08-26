@@ -28,3 +28,24 @@ function getProductsSortedByType() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function massDelete($data) {
+    if (!is_array($data) || empty($data)) {
+        throw new InvalidArgumentException('Invalid data provided for deletion.');
+    }
+
+    $pdo = DatabaseConnection::getConnection();
+
+    $placeholders = rtrim(str_repeat('?, ', count($data)), ', ');
+    $sql = "DELETE FROM products WHERE id IN ($placeholders)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $result = $stmt->execute($data);
+
+    if ($result) {
+        return $stmt->rowCount(); // Return the number of rows affected
+    } else {
+        throw new Exception('Failed to execute mass delete.');
+    }
+}

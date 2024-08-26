@@ -42,6 +42,23 @@ switch ($requestUri) {
         }
         break;
 
+    case "/delete-products":
+        if ($requestMethod === 'DELETE') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            print_r($data);
+            echo "<br/>" . "Mohamed yousef";
+            if ($data) {
+                massDelete($data);
+                echo json_encode(['status' => 'success', 'message' => 'Products deleted successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
+            }
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['status' => 'error', 'message' => 'Only DELETE method is allowed']);
+        }
+        break;
+
     default:
         http_response_code(404); // Not Found
         echo json_encode(['status' => 'error', 'message' => 'Route not found']);
