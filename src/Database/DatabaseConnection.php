@@ -2,7 +2,7 @@
 namespace Scandiweb\WebDeveloper\Database;
 
 require_once __DIR__ . '/../../Config.php';
-use Config;
+use Scandiweb\WebDeveloper\Config\Config;
 use PDO;
 use PDOException;
 
