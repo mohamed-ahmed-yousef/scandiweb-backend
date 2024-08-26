@@ -1,11 +1,12 @@
 <?php
 namespace Scandiweb\WebDeveloper\Database;
-//require "./Config.php";
+
+require_once __DIR__ . '/../../Config.php';
+use Config;
 use PDO;
 use PDOException;
-use Scandiweb\WebDeveloper\Config\Config;
 
-class   DatabaseConnection {
+class  DatabaseConnection {
     private static $connection = null;
 
     public static function getConnection() {

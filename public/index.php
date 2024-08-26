@@ -8,7 +8,6 @@ require_once '../src/Models/Product.php';
 require_once '../src/Models/DVD.php';
 require_once '../src/Models/Book.php';
 require_once '../src/Models/Furniture.php';
-require_once '../vendor/autoload.php';
 
 // Basic routing logic
 $requestUri = $_SERVER['REQUEST_URI'];
