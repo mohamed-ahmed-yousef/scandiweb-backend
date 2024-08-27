@@ -12,7 +12,6 @@ class  DatabaseConnection {
     public static function getConnection() {
         if (self::$connection === null) {
             $config = new Config();
-            echo $config->getEnv('DB_HOST') . $config->getEnv('DB_NAME') . $config->getEnv('DB_USERNAME') . $config->getEnv('DB_PASSWORD');
             $dsn = 'mysql:host='. $config->getEnv('DB_HOST') .  ';dbname=' . $config->getEnv('DB_NAME') . ';charset=utf8';
             $username = $config->getEnv('DB_USERNAME');
             $password = $config->getEnv('DB_PASSWORD');

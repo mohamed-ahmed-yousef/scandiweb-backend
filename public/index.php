@@ -12,8 +12,10 @@ require_once '../src/Models/Furniture.php';
 // Basic routing logic
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-echo $requestUri;
-echo $requestMethod;
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST, DELETE");
+header("Content-type: application/json; charset: UTF-8");
 
 switch ($requestUri) {
     case '/create-product':
@@ -43,10 +45,9 @@ switch ($requestUri) {
         break;
 
     case "/delete-products":
-        if ($requestMethod === 'DELETE') {
+        if ($requestMethod === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
-            print_r($data);
-            echo "<br/>" . "Mohamed yousef";
+
             if ($data) {
                 massDelete($data);
                 echo json_encode(['status' => 'success', 'message' => 'Products deleted successfully']);
