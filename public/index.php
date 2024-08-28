@@ -23,7 +23,7 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestUri) {
     case '/create-product':
-//        if ($requestMethod === 'POST') {
+        if ($requestMethod === 'POST' || $requestMethod === 'OPTIONS') {
             $requestData = json_decode(file_get_contents('php://input'), true);
             print_r($requestData);
             if ($requestData) {
@@ -32,10 +32,10 @@ switch ($requestUri) {
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
             }
-//        } else {
-//            http_response_code(405); // Method Not Allowed
-//            echo json_encode(['status' => 'error', 'message' => 'Only POST method is allowed']);
-//        }
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['status' => 'error', 'message' => 'Only POST method is allowed']);
+        }
         break;
 
     case '/get-products':
@@ -49,7 +49,7 @@ switch ($requestUri) {
         break;
 
     case "/delete-products":
-        if ($requestMethod === 'POST') {
+        if ($requestMethod === 'POST' || $requestMethod === 'OPTIONS') {
             $data = json_decode(file_get_contents('php://input'), true);
 
             if ($data) {
