@@ -24,7 +24,6 @@ switch ($requestUri) {
             $requestData = json_decode(file_get_contents('php://input'), true);
             if ($requestData) {
                 createProduct($requestData);
-                echo json_encode(['status' => 'success', 'message' => 'Product created successfully']);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
             }
