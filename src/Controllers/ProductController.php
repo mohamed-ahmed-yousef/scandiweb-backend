@@ -26,7 +26,7 @@ function createProduct($requestData) {
     }catch(Exception $e) {
         http_response_code(500);
 
-        echo json_encode(['error' => 'Database error: ' . str_starts_with($e->getMessage(), 'SQLSTATE[23000]') ? 'Duplicate SKU, It must be unique': "Cannot connect to server"]);
+        echo json_encode(['error' => 'Database error: ' . str_starts_with($e->getMessage(), 'SQLSTATE[23000]') ? 'SKU must be unique, duplicate detected.': "Cannot connect to server"]);
     }
 }
 

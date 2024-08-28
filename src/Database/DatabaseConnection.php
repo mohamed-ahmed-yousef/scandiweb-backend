@@ -21,7 +21,8 @@ class  DatabaseConnection {
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 http_response_code(500);
-                die('Connection failed: ' . $e->getMessage());
+                die(json_encode(['error' => 'Cannot connect to server']));
+
             }
         }
         return self::$connection;
