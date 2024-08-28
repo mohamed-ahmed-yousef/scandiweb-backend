@@ -9,17 +9,21 @@ require_once '../src/Models/DVD.php';
 require_once '../src/Models/Book.php';
 require_once '../src/Models/Furniture.php';
 
-// Basic routing logic
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Content-type: application/json; charset: UTF-8");
+header("Access-Control-Allow-Credentials: true");
+
+
+
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: GET, POST, DELETE");
-header("Content-type: application/json; charset: UTF-8");
 
 switch ($requestUri) {
     case '/create-product':
-        if ($requestMethod === 'POST') {
+//        if ($requestMethod === 'POST') {
             $requestData = json_decode(file_get_contents('php://input'), true);
             print_r($requestData);
             if ($requestData) {
@@ -28,10 +32,10 @@ switch ($requestUri) {
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
             }
-        } else {
-            http_response_code(405); // Method Not Allowed
-            echo json_encode(['status' => 'error', 'message' => 'Only POST method is allowed']);
-        }
+//        } else {
+//            http_response_code(405); // Method Not Allowed
+//            echo json_encode(['status' => 'error', 'message' => 'Only POST method is allowed']);
+//        }
         break;
 
     case '/get-products':
