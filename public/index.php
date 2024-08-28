@@ -15,17 +15,13 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-type: application/json; charset: UTF-8");
 header("Access-Control-Allow-Credentials: true");
 
-
-
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-
 
 switch ($requestUri) {
     case '/create-product':
         if ($requestMethod === 'POST' || $requestMethod === 'OPTIONS') {
             $requestData = json_decode(file_get_contents('php://input'), true);
-            print_r($requestData);
             if ($requestData) {
                 createProduct($requestData);
                 echo json_encode(['status' => 'success', 'message' => 'Product created successfully']);

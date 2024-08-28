@@ -20,6 +20,7 @@ class  DatabaseConnection {
                 self::$connection = new PDO($dsn, $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
+                http_response_code(500);
                 die('Connection failed: ' . $e->getMessage());
             }
         }
