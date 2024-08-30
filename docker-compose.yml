@@ -1,5 +1,7 @@
+
 services:
   app:
+    restart: always
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -11,14 +13,15 @@ services:
     depends_on:
       - db
     environment:
-      - MYSQL_HOST={DB_HOST}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
-      - MYSQL_DATABASE=${DB_NAME}
+      DB_HOST: db
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
 
   db:
     image: mysql:8.0
     container_name: mysql-db
+    restart: always
     ports:
       - "3306:3306"
     environment:

@@ -28,11 +28,11 @@ switch ($requestUri) {
             if ($requestData) {
                 createProduct($requestData);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
+                echo json_encode(['status' => 'error', 'error' => 'Invalid input data']);
             }
         } else {
             http_response_code(405); // Method Not Allowed
-            echo json_encode(['status' => 'error', 'message' => 'Only POST method is allowed']);
+            echo json_encode(['status' => 'error', 'error' => 'Only POST method is allowed']);
         }
         break;
 
@@ -42,7 +42,7 @@ switch ($requestUri) {
             echo json_encode($products);
         } else {
             http_response_code(405); // Method Not Allowed
-            echo json_encode(['status' => 'error', 'message' => 'Only GET method is allowed']);
+            echo json_encode(['status' => 'error', 'error' => 'Only GET method is allowed']);
         }
         break;
 
@@ -54,16 +54,16 @@ switch ($requestUri) {
                 massDelete($data);
                 echo json_encode(['status' => 'success', 'message' => 'Products deleted successfully']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Invalid input data']);
+                echo json_encode(['status' => 'error', 'error' => 'Invalid input data']);
             }
         } else {
             http_response_code(405); // Method Not Allowed
-            echo json_encode(['status' => 'error', 'message' => 'Only DELETE method is allowed']);
+            echo json_encode(['status' => 'error', 'error' => 'Only DELETE method is allowed']);
         }
         break;
 
     default:
         http_response_code(404); // Not Found
-        echo json_encode(['status' => 'error', 'message' => 'Route not found']);
+        echo json_encode(['status' => 'error', 'error' => 'Route not found']);
         break;
 }
