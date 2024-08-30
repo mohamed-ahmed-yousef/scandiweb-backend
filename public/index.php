@@ -10,10 +10,11 @@ require_once '../src/Models/Book.php';
 require_once '../src/Models/Furniture.php';
 
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: GET, POST, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-type: application/json; charset: UTF-8");
 header("Access-Control-Allow-Credentials: true");
+
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
