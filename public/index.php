@@ -19,6 +19,9 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestUri) {
+    case '/':
+        echo json_encode(['status' => 'success', 'message' => 'Server is running.']);
+        break;
     case '/create-product':
         if ($requestMethod === 'POST' || $requestMethod === 'OPTIONS') {
             $requestData = json_decode(file_get_contents('php://input'), true);
