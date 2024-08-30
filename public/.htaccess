@@ -1,4 +1,3 @@
-# public/.htaccess
 
 Options -Indexes
 RewriteEngine On

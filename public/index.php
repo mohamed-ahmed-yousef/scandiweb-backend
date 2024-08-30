@@ -1,5 +1,4 @@
 <?php
-// public/index.php
 
 require_once '../src/Controllers/ProductController.php';
 require_once '../src/Database/DatabaseConnection.php';
