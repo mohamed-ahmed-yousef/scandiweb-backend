@@ -64,6 +64,7 @@ switch ($requestUri) {
 
     default:
         http_response_code(404); // Not Found
-        echo json_encode(['status' => 'error', 'error' => 'Route not found']);
+
+        echo json_encode(['status' => 'error', 'error' => 'Route not found', "router" => $requestUri]);
         break;
 }
