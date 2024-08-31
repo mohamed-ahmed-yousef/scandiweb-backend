@@ -10,7 +10,8 @@ use Scandiweb\WebDeveloper\Factories\ProductFactory;
 
 class ProductController
 {
-    public function createProduct($requestData) {
+    public function createProduct($requestData)
+    {
         try {
 
             $product = ProductFactory::createProduct($requestData['category'], $requestData);
@@ -37,7 +38,8 @@ class ProductController
         }
     }
 
-    public function getProductsSortedByType() {
+    public function getProductsSortedByType()
+    {
         $pdo = DatabaseConnection::getConnection();
         $sql = "SELECT * FROM products ORDER BY FIELD(category, 'DVD', 'Book', 'Furniture')";
         $stmt = $pdo->prepare($sql);
@@ -45,13 +47,13 @@ class ProductController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function massDelete($data) {
+    public function massDelete($data)
+    {
         if (!is_array($data) || empty($data)) {
             throw new InvalidArgumentException('Invalid data provided for deletion.');
         }
 
         $pdo = DatabaseConnection::getConnection();
-
         $placeholders = rtrim(str_repeat('?, ', count($data)), ', ');
         $sql = "DELETE FROM products WHERE id IN ($placeholders)";
 
@@ -66,5 +68,4 @@ class ProductController
         }
     }
 }
-
 

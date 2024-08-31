@@ -2,13 +2,15 @@
 
 namespace Scandiweb\WebDeveloper\Models;
 
-class DVD implements Product {
+class DVD implements Product
+{
     protected $sku;
     protected $name;
     protected $price;
     protected $size;
 
-    public function __construct($sku, $name, $price, $size) {
+    public function __construct($sku, $name, $price, $size)
+    {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
@@ -20,11 +22,17 @@ class DVD implements Product {
         return $this->sku;
     }
     public function getName()
-    { return $this->name; }
+    {
+        return $this->name;
+    }
 
-    public function getPrice() { return $this->price; }
+    public function getPrice()
+    {
+        return $this->price;
+    }
 
-    public function getCategorySpecificAttribute() {
+    public function getCategorySpecificAttribute()
+    {
         return ['size' => $this->size];
     }
 

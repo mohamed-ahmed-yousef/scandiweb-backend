@@ -6,14 +6,16 @@ use Scandiweb\WebDeveloper\Models\Book;
 use Scandiweb\WebDeveloper\Models\DVD;
 use Scandiweb\WebDeveloper\Models\Furniture;
 
-class ProductFactory {
+class ProductFactory
+{
     private static $productMap = [
         'DVD' => DVD::class,
         'Book' => Book::class,
         'Furniture' => Furniture::class,
     ];
 
-    public static function createProduct($category, $data) {
+    public static function createProduct($category, $data)
+    {
         if (!array_key_exists($category, self::$productMap)) {
             throw new Exception('Invalid category');
         }
