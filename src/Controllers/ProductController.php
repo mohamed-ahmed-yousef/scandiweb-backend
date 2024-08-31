@@ -2,12 +2,15 @@
 
 namespace Scandiweb\WebDeveloper\Controllers;
 
+use Exception;
+use InvalidArgumentException;
+use PDO;
 use Scandiweb\WebDeveloper\Database\DatabaseConnection;
 use Scandiweb\WebDeveloper\Factories\ProductFactory;
 
 class ProductController
 {
-    function createProduct($requestData) {
+    public function createProduct($requestData) {
         try {
 
             $product = ProductFactory::createProduct($requestData['category'], $requestData);
@@ -30,11 +33,11 @@ class ProductController
         }catch(Exception $e) {
             http_response_code(500);
 
-            echo json_encode(['error' => 'Database error: ' . str_starts_with($e->getMessage(), 'SQLSTATE[23000]') ? 'SKU must be unique, duplicate detected.': "Cannot connect to server"]);
+            echo json_encode(['message' => 'Database error: ' . str_starts_with($e->getMessage(), 'SQLSTATE[23000]') ? 'SKU must be unique, duplicate detected.': "Cannot connect to server"]);
         }
     }
 
-    function getProductsSortedByType() {
+    public function getProductsSortedByType() {
         $pdo = DatabaseConnection::getConnection();
         $sql = "SELECT * FROM products ORDER BY FIELD(category, 'DVD', 'Book', 'Furniture')";
         $stmt = $pdo->prepare($sql);
@@ -42,7 +45,7 @@ class ProductController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function massDelete($data) {
+    public function massDelete($data) {
         if (!is_array($data) || empty($data)) {
             throw new InvalidArgumentException('Invalid data provided for deletion.');
         }
