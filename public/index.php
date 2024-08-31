@@ -1,5 +1,7 @@
 <?php
 
+use Scandiweb\WebDeveloper\Controllers\ProductController;
+
 require_once '../src/Controllers/ProductController.php';
 require_once '../src/Database/DatabaseConnection.php';
 require_once '../src/Factories/ProductFactory.php';
@@ -17,6 +19,7 @@ header("Access-Control-Allow-Credentials: true");
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
+$productController = new ProductController();
 
 switch ($requestUri) {
     case '/':
@@ -26,7 +29,7 @@ switch ($requestUri) {
         if ($requestMethod === 'POST' || $requestMethod === 'OPTIONS') {
             $requestData = json_decode(file_get_contents('php://input'), true);
             if ($requestData) {
-                createProduct($requestData);
+                $productController->createProduct($requestData);
             } else {
                 echo json_encode(['status' => 'error', 'error' => 'Invalid input data']);
             }
@@ -38,7 +41,7 @@ switch ($requestUri) {
 
     case '/get-products':
         if ($requestMethod === 'GET') {
-            $products = getProductsSortedByType();
+            $products = $productController->getProductsSortedByType();
             echo json_encode($products);
         } else {
             http_response_code(405); // Method Not Allowed
@@ -51,7 +54,7 @@ switch ($requestUri) {
             $data = json_decode(file_get_contents('php://input'), true);
 
             if ($data) {
-                massDelete($data);
+                $productController->massDelete($data);
                 echo json_encode(['status' => 'success', 'message' => 'Products deleted successfully']);
             } else {
                 echo json_encode(['status' => 'error', 'error' => 'Invalid input data']);
