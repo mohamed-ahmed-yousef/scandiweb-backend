@@ -5,13 +5,14 @@
 
 ## Tools used
 - php
-- composer: To install, manage dependencies
-- phpstan: To analyze code
-```sh
-  # to use phpstan
-  vendor/bin/phpstan analyse src 
-```
+- OOP
+- composer
 - Docker
+- phpstan
+    ```sh
+      # to use phpstan
+      vendor/bin/phpstan analyse src 
+    ```
 
 
 ## Project structure
