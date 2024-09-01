@@ -41,7 +41,7 @@ class ProductController
     public function getProductsSortedByType()
     {
         $pdo = DatabaseConnection::getConnection();
-        $sql = "SELECT * FROM products ORDER BY FIELD(category, 'DVD', 'Book', 'Furniture')";
+        $sql = "SELECT * FROM products";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
