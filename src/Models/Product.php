@@ -1,7 +1,8 @@
 <?php
   namespace Scandiweb\WebDeveloper\Models;
 
-interface Product {
+interface Product
+{
     public function getSku();
     public function getName();
     public function getPrice();

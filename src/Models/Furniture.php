@@ -1,7 +1,8 @@
 <?php
 namespace Scandiweb\WebDeveloper\Models;
 
-class Furniture implements Product {
+class Furniture implements Product
+{
     private  $sku;
     private  $name;
     private  $price;
@@ -9,7 +10,8 @@ class Furniture implements Product {
     private  $width;
     private  $length;
 
-    public function __construct( $sku,  $name,  $price,  $height,  $width,  $length) {
+    public function __construct( $sku,  $name,  $price,  $height,  $width,  $length)
+    {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
@@ -18,10 +20,23 @@ class Furniture implements Product {
         $this->length = $length;
     }
 
-    public function getSku()  { return $this->sku; }
-    public function getName()  { return $this->name; }
-    public function getPrice()  { return $this->price; }
-    public function getCategorySpecificAttribute() {
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function getCategorySpecificAttribute()
+    {
         return [
             'height' => $this->height,
             'width' => $this->width,

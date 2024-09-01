@@ -6,10 +6,12 @@ use Scandiweb\WebDeveloper\Config\Config;
 use PDO;
 use PDOException;
 
-class  DatabaseConnection {
+class  DatabaseConnection
+{
     private static $connection = null;
 
-    public static function getConnection() {
+    public static function getConnection()
+    {
         if (self::$connection === null) {
             $config = new Config();
             $dsn = 'mysql:host='. $config->getEnv('DB_HOST') .  ';dbname=' . $config->getEnv('DB_NAME') . ';charset=utf8';
@@ -21,7 +23,7 @@ class  DatabaseConnection {
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 http_response_code(500);
-                die(json_encode(['error' => 'Cannot connect to server']));
+                die(json_encode(['message' => 'Cannot connect to server']));
 
             }
         }

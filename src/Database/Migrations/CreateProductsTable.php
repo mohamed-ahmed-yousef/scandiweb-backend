@@ -3,8 +3,10 @@ namespace Scandiweb\WebDeveloper\Database\Migrations;
 
 use PDO;
 
-class CreateProductsTable {
-    public static function up(PDO $pdo) {
+class CreateProductsTable
+{
+    public static function up(PDO $pdo)
+    {
         $sql = "
             CREATE TABLE IF NOT EXISTS products (
                 id INT AUTO_INCREMENT PRIMARY KEY,
